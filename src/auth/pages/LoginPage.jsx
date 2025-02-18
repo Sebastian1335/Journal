@@ -7,15 +7,18 @@ import {useForm} from "../../hooks"
 import {startGoogleSignIn, startLoginWithEmailPassword} from "../../store"
 import { useMemo, useState } from "react";
 
+const formData = {
+    email: '',
+    password: ''
+}
+
 export const LoginPage = () => {
     const {status, errorMessage} = useSelector(state => state.auth)
     const dispath = useDispatch()
     
     const [formSubmitted, setFormSubmitted] = useState(false)
-    const {email, password, onInputChange} = useForm({
-        email: '',
-        password: ''
-    });
+    const {email, password, onInputChange} = useForm(formData);
+    
     const onSubmit = (event) => {
         event.preventDefault();
         setFormSubmitted(true)
